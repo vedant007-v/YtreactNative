@@ -1,8 +1,16 @@
+// src/screens/NewsFeedScreen.tsx
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, ListRenderItemInfo } from 'react-native';
+import { 
+  SafeAreaView, 
+  ScrollView, 
+  StyleSheet, 
+  ActivityIndicator, 
+  Text 
+} from 'react-native';
+import NewsCard from '../components/NewsCard';
 
-// Define a TypeScript type for your article data
-export interface Article {
+// Define the article type locally
+interface Article {
   id: string;
   title: string;
   description: string;
@@ -11,15 +19,12 @@ export interface Article {
   category?: string;
 }
 
-import NewsCard from '../components/NewsCard';
-
-const NewsFeedScreen: React.FC = () => {
-  // Type the state with Article[] (array of Article objects)
+// REMOVE props from the component definition
+const NewsFeedScreen: React.FC = () => {  // No props here
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Simulate API fetch with typed data
     const mockData: Article[] = [
       {
         id: '1',
@@ -47,13 +52,13 @@ const NewsFeedScreen: React.FC = () => {
 
   const handleReadNow = (articleId: string) => {
     console.log(`Reading article: ${articleId}`);
-    // Navigation would go here
   };
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
-        {/* Add a loading component */}
+      <SafeAreaView style={[styles.container, styles.centerContent]}>
+        <ActivityIndicator size="large" color="#1e88e5" />
+        <Text style={styles.loadingText}>Loading articles...</Text>
       </SafeAreaView>
     );
   }
@@ -62,7 +67,7 @@ const NewsFeedScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {articles.map((article) => (
-          <NewsCard 
+          <NewsCard
             key={article.id}
             article={article}
             onReadNow={() => handleReadNow(article.id)}
@@ -78,6 +83,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#666',
   },
 });
 

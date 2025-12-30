@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "User Insights Dashboard",
+    "loading": "Loading Dashboard...",
+    "error": "Failed to load data. Please try again.",
+    "retry": "Tap to retry",
+    "metrics": {
+      "totalUsers": "Total Users",
+      "adminUsers": "Admin Users",
+      "maleUsers": "Male Users",
+      "femaleUsers": "Female Users",
+      "avgAge": "Avg Age"
+    },
+    "charts": {
+      "genderDistribution": "Gender Distribution",
+      "ageDistribution": "Age Distribution",
+      "usersByCountry": "Users by Country"
+    },
+    "gender": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "ageGroups": {
+      "18_25": "18-25",
+      "26_35": "26-35",
+      "36_50": "36-50",
+      "50_plus": "50+"
+    }
+  }
+}
